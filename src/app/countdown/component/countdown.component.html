@@ -1,0 +1,14 @@
+PLACEHOLDERS:
+
+all countdowns:
+
+<ul class="list-group">
+  <li class="list-group-item"
+    *ngFor="let countdown of countdowns$ | async">
+    {{countdown.name}}
+  </li>
+</ul>
+
+add countdown: 
+
+<button (click)="addCountdown()">add a coutndown</button>

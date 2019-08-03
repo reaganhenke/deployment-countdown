@@ -1,12 +1,15 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var cors = require('cors');
+
 var ObjectID = mongodb.ObjectID;
 
 var COUNTDOWN_COLLECTION = "countdowns";
 
 var app = express();
 app.use(bodyParser.json());
+app.use(cors); //remove this when deploying?
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
