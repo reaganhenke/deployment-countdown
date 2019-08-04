@@ -33,7 +33,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   });
 });
 
-// CONTACTS API ROUTES BELOW
+// COUNTDOWN API ROUTES BELOW
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
@@ -41,7 +41,7 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-/*  "/countdowns"
+/*  "/api/countdowns"
  *    GET: finds all countdowns
  *    POST: creates a new countdown
  */
@@ -49,7 +49,7 @@ function handleError(res, reason, message, code) {
 app.get("/api/countdowns", function(req, res) {
   db.collection(COUNTDOWN_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
+      handleError(res, err.message, "Failed to get countdowns.");
     } else {
       res.status(200).json(docs);
     }
@@ -61,7 +61,7 @@ app.post("/api/countdowns", function(req, res) {
   newCountdown.createDate = new Date();
 
   if (!req.body.name || !req.body.arriveDate || !req.body.leaveDate) {
-    handleError(res, "Invalid user input", "Must provide a name.", 400);
+    handleError(res, "Invalid user input", "Must provide all required fields (name, arriveDate, leaveDate).", 400);
   } else {
     db.collection(COUNTDOWN_COLLECTION).insertOne(newCountdown, function(err, doc) {
       if (err) {
@@ -73,13 +73,27 @@ app.post("/api/countdowns", function(req, res) {
   }
 });
 
-/*  "/countdowns/:id"
- *    GET: find contact by id
- *    DELETE: deletes contact by id
+/*  "api/countdowns/:id"
+ *    GET: find countdown by id
+ *    DELETE: deletes countdown by id
  */
 
-// app.get("/countdowns/:id", function(req, res) {
-// });
+app.get("/api/countdowns/:id", function(req, res) {
+  db.collection(COUNTDOWN_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to get countdown");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});
 
-// app.delete("/countdowns/:id", function(req, res) {
-// });
+app.delete("/api/countdowns/:id", function(req, res) {
+  db.collection(COUNTDOWN_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+    if (err) {
+      handleError(res, err.message, "Failed to delete countdown");
+    } else {
+      res.status(200).json(req.params.id);
+    }
+  });
+});

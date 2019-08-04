@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CountdownService {
-    private contactsUrl = '/countdowns';
-    // private contactsUrl = 'http://localhost:8080/countdowns';
+    // private contactsUrl = '/countdowns';
+    private contactsUrl = 'https://frozen-mountain-58847.herokuapp.com/api/countdowns';
 
     constructor(private http: HttpClient) {}
 
