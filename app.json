@@ -1,0 +1,21 @@
+{
+  "name": "MEAN Deployment Countdown",
+  "description": "Deployment Countdown app using MEAN",
+  "keywords": [
+    "MEAN",
+    "Angular",
+    "Node",
+    "MongoDB"
+  ],
+  "repository": "https://github.com/reaganhenke/deployment-countdown",
+  "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    "mongolab"
+  ]
+}
