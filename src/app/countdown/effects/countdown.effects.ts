@@ -21,6 +21,7 @@ export class CountdownEffects {
     ofType<LoadCountdowns>(LOAD_COUNTDOWNS),
     switchMap(action => {
       return this.service.getCountdowns().pipe(
+        tap(response => console.log(response)),
         map((response: Countdown[]) =>
           new LoadCountdownsSuccess(response)
         ),

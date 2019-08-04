@@ -1,11 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var cors = require("cors");
 var ObjectID = mongodb.ObjectID;
 
 var COUNTDOWN_COLLECTION = "countdowns";
 
 var app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Create link to Angular build directory
