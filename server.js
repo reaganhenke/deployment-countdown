@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
-var cors = require('cors');
 
 var ObjectID = mongodb.ObjectID;
 
@@ -9,7 +8,6 @@ var COUNTDOWN_COLLECTION = "countdowns";
 
 var app = express();
 app.use(bodyParser.json());
-app.use(cors); //remove this when deploying?
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
@@ -45,7 +43,7 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new countdown
  */
 
-app.get("/countdowns", function(req, res) {
+app.get("/api/countdowns", function(req, res) {
   db.collection(COUNTDOWN_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
@@ -55,7 +53,7 @@ app.get("/countdowns", function(req, res) {
   });
 });
 
-app.post("/countdowns", function(req, res) {
+app.post("/api/countdowns", function(req, res) {
   var newCountdown = req.body;
   newCountdown.createDate = new Date();
 
@@ -77,8 +75,8 @@ app.post("/countdowns", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/countdowns/:id", function(req, res) {
-});
+// app.get("/countdowns/:id", function(req, res) {
+// });
 
-app.delete("/countdowns/:id", function(req, res) {
-});
+// app.delete("/countdowns/:id", function(req, res) {
+// });
