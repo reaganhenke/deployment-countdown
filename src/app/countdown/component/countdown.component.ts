@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Countdown } from '../countdown';
 import { CountdownService } from '../../services/countdown.service';
 import { Store, select } from '@ngrx/store';
 // import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 import * as fromCountdown from '../reducers';
-import { LoadCountdowns, PostCountdown } from '../actions/countdown.actions';
-import { Observable } from 'rxjs';
+import { LoadCountdown } from '../actions/countdown.actions';
+import { Observable, of } from 'rxjs';
+import { Countdown } from 'src/app/shared/countdown.model';
 
 @Component({
   selector: 'app-countdown',
@@ -16,35 +16,13 @@ import { Observable } from 'rxjs';
 
 export class CountdownComponent implements OnInit {
 
-  countdowns$: Observable<Countdown[]>;
-  // selectedContact: Countdown;
+  countdown$: Observable<Countdown>;
 
   constructor(private countdownService: CountdownService, private store: Store<fromCountdown.State>) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadCountdowns());
-    this.store.pipe(select(fromCountdown.getCountdowns));
-  }
-
-  createNewContact() {
-    const contact = {
-      name: '',
-      email: '',
-      phone: {
-        work: '',
-        mobile: ''
-      }
-    };
-  }
-
-  addCountdown() {
-    const mockCountdown = {
-      name: 'Mack Daddy',
-      namePath: 'mack-daddy',
-      arriveDate: '123',
-      leaveDate: '123'
-    };
-    this.store.dispatch(new PostCountdown(mockCountdown));
+    this.store.dispatch(new LoadCountdown('5d47463a830dda001704d436'));
+    this.countdown$ = this.store.pipe(select(fromCountdown.getCountdown));
   }
 
 }

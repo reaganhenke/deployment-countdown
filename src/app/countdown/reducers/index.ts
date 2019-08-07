@@ -1,16 +1,16 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Countdown } from '../countdown';
-import { LOAD_COUNTDOWNS, LOAD_COUNTDOWN_SUCCESS, LOAD_COUNTDOWN_ERROR } from '../actions/countdown.actions';
+import { Countdown } from 'src/app/shared/countdown.model';
+import { CountdownActionTypes } from '../actions/countdown.actions';
 
 export interface State {
-    countdowns: Countdown[] | null;
+    countdown: Countdown | null;
     loading: boolean;
     loaded: boolean;
     error: any;
 }
 
 export const initialState: State = {
-    countdowns: null,
+    countdown: null,
     loading: false,
     loaded: false,
     error: null
@@ -22,27 +22,27 @@ export function reducer(
 ): State {
 
     switch (action.type) {
-      case LOAD_COUNTDOWNS: {
+      case CountdownActionTypes.LoadCountdown: {
         return {
-          ...state,
+          countdown: null,
           loading: true,
           loaded: false,
           error: null
         };
       }
 
-      case LOAD_COUNTDOWN_SUCCESS: {
+      case CountdownActionTypes.LoadCountdownSuccess: {
         return {
-          ...state,
+          countdown: action.countdown,
           loading: false,
           loaded: true,
-          countdowns: action.countdowns
+          error: null
         };
       }
 
-      case LOAD_COUNTDOWN_ERROR: {
+      case CountdownActionTypes.LoadCountdownError: {
         return {
-          ...state,
+          countdown: null,
           loading: false,
           loaded: true,
           error: action.error
@@ -56,11 +56,25 @@ export function reducer(
 
 }
 
-export const getCountdownsSelector = (state: State) => state.countdowns;
+export const getCountdownsState = createFeatureSelector<State>('countdown');
 
-export const getCountdownsState = createFeatureSelector<State>('todos');
+export const getCountdownSelector = (state: State) => state.countdown;
 
-export const getCountdowns = createSelector(
+export const getLoadedSelector = (state: State) => state.loaded;
+
+export const getLoadingSelector = (state: State) => state.loading;
+
+export const getCountdown = createSelector(
   getCountdownsState,
-  getCountdownsSelector
+  getCountdownSelector
+);
+
+export const getLoaded = createSelector(
+  getCountdownsState,
+  getLoadedSelector
+);
+
+export const getLoading = createSelector(
+  getCountdownsState,
+  getLoadingSelector
 );

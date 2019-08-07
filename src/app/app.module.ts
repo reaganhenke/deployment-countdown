@@ -11,11 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import * as countdownReducers from './countdown/reducers';
 import { CountdownModule } from './countdown/countdown.module';
 import { EffectsModule } from '@ngrx/effects';
+import { CreateCountdownComponent } from './create-countdown/component/create-countdown.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountdownComponent
+    CountdownComponent,
+    CreateCountdownComponent,
+    AboutComponent
   ],
   imports: [
     HttpClientModule,

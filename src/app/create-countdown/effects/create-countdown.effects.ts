@@ -1,28 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
-import {
-  LoadCountdown,
-  CountdownActionTypes,
-  LoadCountdownSuccess,
-  LoadCountdownError
-} from '../actions/countdown.actions';
+import { switchMap, map, catchError } from 'rxjs/operators';
+
 import { CountdownService } from 'src/app/services/countdown.service';
+import { PostCountdownSuccess, PostCountdownError,
+  PostCountdown, CreateCountdownActionTypes } from '../actions/create-countdown.actions';
 import { Countdown } from 'src/app/shared/countdown.model';
 
 @Injectable()
 export class CountdownEffects {
 
   @Effect()
-  loadCountdown = this.actions$.pipe(
-    ofType<LoadCountdown>(CountdownActionTypes.LoadCountdown),
+  postCountdown = this.actions$.pipe(
+    ofType<PostCountdown>(CreateCountdownActionTypes.PostCountdown),
     switchMap(action => {
-      return this.service.getCountdown(action.id).pipe(
+      return this.service.postCountdown(action.countdown).pipe(
         map((response: Countdown) =>
-          new LoadCountdownSuccess(response)
+         new PostCountdownSuccess(response)
         ),
-        catchError(error => of(new LoadCountdownError(error)))
+        catchError((error: any) => of(new PostCountdownError(error)))
       );
     })
   );

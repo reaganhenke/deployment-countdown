@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Countdown } from '../countdown/countdown';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Countdown } from '../shared/countdown.model';
 
 @Injectable()
 export class CountdownService {
     // private contactsUrl = '/api/countdowns';
-    private contactsUrl = 'https://frozen-mountain-58847.herokuapp.com/api/countdowns';
+    private apiUrl = 'https://frozen-mountain-58847.herokuapp.com/api/countdowns';
 
     constructor(private http: HttpClient) {}
 
-    getCountdowns(): Observable<object> {
-      console.log('HERE');
-      return this.http.get(this.contactsUrl);
+    getCountdown(id: string): Observable<object> {
+      return this.http.get(this.apiUrl + '/' + id);
     }
 
-    postCountdown(countdown: Countdown): any {
-      return this.http.post(this.contactsUrl, countdown);
+    postCountdown(countdown: Countdown): Observable<any> {
+      return this.http.post(this.apiUrl, countdown);
     }
 
 }

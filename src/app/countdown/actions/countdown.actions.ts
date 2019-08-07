@@ -1,37 +1,28 @@
 import { Action } from '@ngrx/store';
-import { Countdown } from '../countdown';
+import { Countdown } from 'src/app/shared/countdown.model';
 
-export const LOAD_COUNTDOWNS = '[Countdown] Load Countdowns';
-export const LOAD_COUNTDOWN_ERROR = '[Countdown] Load Countdown Error';
-export const LOAD_COUNTDOWN_SUCCESS = '[Countdown] Load Countdown Success';
-export const POST_COUNTDOWN = '[Countdown] Post Countdown';
-
-
-export class LoadCountdowns implements Action {
-  readonly type = LOAD_COUNTDOWNS;
-
-  constructor() {}
+export enum CountdownActionTypes {
+  LoadCountdown = '[Countdown] Load Countdown',
+  LoadCountdownError = '[Countdown] Load Countdown Error',
+  LoadCountdownSuccess = '[Countdown] Load Countdown Success'
 }
 
-export class LoadCountdownsError implements Action {
-  readonly type = LOAD_COUNTDOWN_ERROR;
-
-  constructor(error: any) {}
+export class LoadCountdown implements Action {
+  readonly type = CountdownActionTypes.LoadCountdown;
+  constructor(public id: string) {}
 }
 
-export class LoadCountdownsSuccess implements Action {
-  readonly type = LOAD_COUNTDOWN_SUCCESS;
-
-  constructor(countdowns: Countdown[]) {}
+export class LoadCountdownError implements Action {
+  readonly type = CountdownActionTypes.LoadCountdownError;
+  constructor(public error: any) {}
 }
 
-export class PostCountdown implements Action {
-  readonly type = POST_COUNTDOWN;
-
+export class LoadCountdownSuccess implements Action {
+  readonly type = CountdownActionTypes.LoadCountdownSuccess;
   constructor(public countdown: Countdown) {}
 }
 
 export type ActionTypes =
-  LoadCountdowns
-  | LoadCountdownsError
-  | LoadCountdownsSuccess;
+  LoadCountdown
+  | LoadCountdownError
+  | LoadCountdownSuccess;
