@@ -6,6 +6,8 @@ import * as fromCountdown from '../reducers';
 import { LoadCountdown } from '../actions/countdown.actions';
 import { Observable, of } from 'rxjs';
 import { Countdown } from 'src/app/shared/countdown.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ShareModalComponent } from 'src/app/share-modal/share-modal.component';
 
 @Component({
   selector: 'app-countdown',
@@ -18,11 +20,16 @@ export class CountdownComponent implements OnInit {
 
   countdown$: Observable<Countdown>;
 
-  constructor(private countdownService: CountdownService, private store: Store<fromCountdown.State>) { }
+  constructor(private countdownService: CountdownService, private store: Store<fromCountdown.State>, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.store.dispatch(new LoadCountdown('5d47463a830dda001704d436'));
     this.countdown$ = this.store.pipe(select(fromCountdown.getCountdown));
+  }
+
+
+  openModal() {
+    this.dialog.open(ShareModalComponent);
   }
 
 }

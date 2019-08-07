@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <main>
+    <div>
+      <nav>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">create</a>
+        <a routerLink="/about" routerLinkActive="active">about</a>
+      </nav>
+      <section>
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/reaganhenke/deployment-countdown"><img src="assets/github.png" alt="Github"/></a>
+  </footer>
+</div>
