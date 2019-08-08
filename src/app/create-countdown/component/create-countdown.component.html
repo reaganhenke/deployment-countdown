@@ -1,1 +1,12 @@
-<p>create-countdown works!</p>
+<form>
+  <input type="text" aria-label="countdown name">
+  <div>
+      <label for="start-date">Start Date</label>
+      <input id="start-date" type="text">
+  </div>
+  <div>
+      <label for="end-date">End Date</label>
+      <input id="end-date" type="text">
+  </div>
+  <button (click)="submit($event)">Create My Countdown</button>
+</form>

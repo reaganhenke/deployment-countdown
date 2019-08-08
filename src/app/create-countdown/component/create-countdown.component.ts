@@ -12,4 +12,13 @@ export class CreateCountdownComponent implements OnInit {
   ngOnInit() {
   }
 
+  createForms() {
+
+  }
+
+  submit(e: Event) {
+    e.preventDefault();
+    console.log('submitting');
+  }
+
 }
