@@ -25,7 +25,8 @@ main {
   align-items: center;
   & > div {
     width: 80%;
-    max-width: 1120px;
+    max-width: 880px;
+    margin: auto;
   }
 }
 

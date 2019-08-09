@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-countdown',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCountdownComponent implements OnInit {
 
-  constructor() { }
+  countdownForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-  }
-
-  createForms() {
-
+    this.countdownForm = this.fb.group({
+      name: ['', Validators.required],
+      startDate: ['', Validators.required],
+      end: ['', Validators.required]
+    });
   }
 
   submit(e: Event) {

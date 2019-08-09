@@ -18,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ShareModalComponent } from './share-modal/share-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShareModalComponent
   ],
   imports: [
+    ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
