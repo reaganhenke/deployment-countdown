@@ -19,6 +19,7 @@ import { ShareModalComponent } from './share-modal/share-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InlineInputComponent } from './create-countdown/component/inline-input.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     HomeComponent,
     FooterComponent,
-    ShareModalComponent
+    ShareModalComponent,
+    InlineInputComponent
   ],
   imports: [
     ReactiveFormsModule,

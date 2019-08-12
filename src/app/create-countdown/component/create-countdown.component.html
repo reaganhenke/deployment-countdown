@@ -1,12 +1,26 @@
 <form [formGroup]="countdownForm">
-  <input type="text" aria-label="countdown name">
+  <div role="textbox" aria-label="countdown name" [class.untouched]="countdownForm.get('name').pristine" (click)="focusInput()">
+    <app-inline-input formControlName="name"></app-inline-input>
+    's countdown
+  </div>
+  <div *ngIf="showError('name')" class="error" role="alert">
+    This field is required.
+  </div>
   <div>
       <label for="start-date">Start Date</label>
-      <input id="start-date" type="date">
+      <input id="start-date" type="date" [class.untouched]="countdownForm.get('startDate').pristine" formControlName="startDate">
+  </div>
+  <div *ngIf="showError('startDate')" class="error" role="alert">
+    This field is required.
   </div>
   <div>
       <label for="end-date">End Date</label>
-      <input id="end-date" type="date">
+      <input id="end-date" type="date" [class.untouched]="countdownForm.get('endDate').pristine" formControlName="endDate">
   </div>
-  <button (click)="submit($event)" [disabled]="countdownForm.invalid">Create My Countdown</button>
+  <div *ngIf="showError('endDate')" class="error" role="alert">
+    This field is required.
+  </div>
+  <div *ngIf="this.countdownForm.errors?.later" class="error" role="alert">End date must be later than start date.</div>
+
+  <button (click)="submit($event)" [disabled]="countdownForm.valid">Create My Countdown</button>
 </form>
