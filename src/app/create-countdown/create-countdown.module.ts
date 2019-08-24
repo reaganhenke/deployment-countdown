@@ -10,4 +10,4 @@ import { CountdownEffects } from './effects/create-countdown.effects';
     EffectsModule.forFeature([CountdownEffects])
   ]
 })
-export class CountdownModule { }
+export class CreateCountdownModule { }

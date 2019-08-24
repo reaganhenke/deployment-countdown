@@ -1,4 +1,13 @@
-<form [formGroup]="countdownForm">
+<div *ngIf="posting$ | async" class="full-centered">
+  <div class="loading"></div>
+</div>
+
+<div *ngIf="error$ | async" class="full-centered">
+  <div>Something went wrong. Sorry about that. Try again?</div>
+  <button (click)="retry()">Retry</button>
+</div>
+
+<form [formGroup]="countdownForm" *ngIf="!(error$ | async) && !(posting$ | async)">
   <div role="textbox" aria-label="countdown name" [class.untouched]="countdownForm.get('name').pristine" (click)="focusInput()">
     <app-inline-input formControlName="name"></app-inline-input>
     's countdown
@@ -8,19 +17,23 @@
   </div>
   <div>
       <label for="start-date">Start Date</label>
-      <input id="start-date" type="date" [class.untouched]="countdownForm.get('startDate').pristine" formControlName="startDate">
+      <input id="start-date" type="date" [class.untouched]="countdownForm.get('startDate').pristine"
+      formControlName="startDate">
   </div>
   <div *ngIf="showError('startDate')" class="error" role="alert">
     This field is required.
   </div>
   <div>
       <label for="end-date">End Date</label>
-      <input id="end-date" type="date" [class.untouched]="countdownForm.get('endDate').pristine" formControlName="endDate">
+      <input id="end-date" type="date" [class.untouched]="countdownForm.get('endDate').pristine" 
+      formControlName="endDate">
   </div>
-  <div *ngIf="showError('endDate')" class="error" role="alert">
+  <div *ngIf="showError('endDate') && !countdownForm.get('endDate').value" class="error" role="alert">
     This field is required.
   </div>
-  <div *ngIf="this.countdownForm.errors?.later" class="error" role="alert">End date must be later than start date.</div>
 
-  <button (click)="submit($event)" [disabled]="countdownForm.valid">Create My Countdown</button>
+  <div *ngIf="countdownForm.errors?.later" class="error" role="alert">End date must be later than start date.</div>
+  <div *ngIf="countdownForm.get('endDate').errors?.past" class="error" role="alert">End date cannot be in the past.</div>
+
+  <button (click)="submit($event)">Create My Countdown</button>
 </form>

@@ -101,6 +101,39 @@ button {
   }
 }
 
+.full-centered {
+  min-height: 17rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading {
+  display: inline-block;
+  width: 5rem;
+  height: 5rem;
+}
+
+.loading:after {
+  content: " ";
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #363d3d;
+  border-color: #363d3d transparent #363d3d transparent;
+  animation: loading-spin 1.2s linear infinite;
+}
+
+@keyframes loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}  
+
 @media only screen and (max-width: 400px) {
   input, div[role="textbox"] {
     font-size: 0.9rem;

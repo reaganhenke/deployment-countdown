@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InlineInputComponent } from './create-countdown/component/inline-input.component';
+import { CreateCountdownModule } from './create-countdown/create-countdown.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { InlineInputComponent } from './create-countdown/component/inline-input.
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({}),
-    CountdownModule
+    CountdownModule,
+    CreateCountdownModule
   ],
   entryComponents: [ ShareModalComponent ],
   providers: [ CountdownService ],

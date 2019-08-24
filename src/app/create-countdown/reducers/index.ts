@@ -49,6 +49,10 @@ export function reducer(
       };
     }
 
+    case CreateCountdownActionTypes.Retry: {
+      return initialState;
+    }
+
     default: {
         return state;
     }
@@ -63,6 +67,8 @@ export const getPostingSelector = (state: State) => state.posting;
 
 export const getPostedSelector = (state: State) => state.posted;
 
+export const getErrorSelector = (state: State) => state.error;
+
 export const getCountdown = createSelector(
   getCountdownsState,
   getCountdownSelector
@@ -76,4 +82,9 @@ export const getPosting = createSelector(
 export const getPosted = createSelector(
   getCountdownsState,
   getPostedSelector
+);
+
+export const getError = createSelector(
+  getCountdownsState,
+  getErrorSelector
 );
