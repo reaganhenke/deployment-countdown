@@ -1,16 +1,29 @@
-<div class="wrapper">
+<div class="wrapper" >
   <main>
-    <div>
+
+    <div *ngIf="loading$ | async">
+      <section class="full-centered">
+        <div class="loading"></div>
+      </section>
+    </div>
+    
+    <div *ngIf="error$ | async">
+      <h1>Uh Oh</h1>
+      <section class="full-centered">
+        <div>We can't find that countdown. Try again?</div>
+      </section>
+    </div>
+
+    <div *ngIf="countdown$ | async">
       <h1>MY COUNTDOWN</h1>
       <section>
 
-          my countdown:
-          <div *ngIf="countdown$ | async">
-            name: {{(countdown$ | async).name}}
-          </div>
+        my countdown:
+        <div *ngIf="countdown$ | async">
+          name: {{(countdown$ | async).name}}
+        </div>
 
-          <button (click)="openModal()">open modal</button>
-
+        <button (click)="openModal()">open modal</button>
 
       </section>
     </div>
