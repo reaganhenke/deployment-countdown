@@ -62,8 +62,8 @@ app.post("/api/countdowns", function(req, res) {
   var newCountdown = req.body;
   newCountdown.createDate = new Date();
 
-  if (!req.body.name || !req.body.arriveDate || !req.body.leaveDate) {
-    handleError(res, "Invalid user input", "Must provide all required fields (name, arriveDate, leaveDate).", 400);
+  if (!req.body.name || !req.body.startDate || !req.body.endDate) {
+    handleError(res, "Invalid user input", "Must provide all required fields (name, startDate, endDate).", 400);
   } else {
     db.collection(COUNTDOWN_COLLECTION).insertOne(newCountdown, function(err, doc) {
       if (err) {

@@ -23,9 +23,9 @@ export class CreateCountdownComponent implements OnInit {
     this.posting$ = this.store.pipe(select(fromCountdown.getPosting));
     this.error$ = this.store.pipe(select(fromCountdown.getError));
 
-    // this.error$.subscribe(error => {
-    //   console.log('ERROR: ', error);
-    // });
+    this.error$.subscribe(error => {
+      console.log('ERROR: ', error);
+    });
 
     this.countdownForm = this.fb.group({
       name: ['', Validators.required],
