@@ -65,3 +65,22 @@ section {
 span {
   margin: 1rem;
 }
+
+@media only screen and (max-width: 750px) {
+  .content {
+    flex-direction: column-reverse;
+  }
+
+  .pie-wrapper {
+    flex-direction: column-reverse;
+    padding: 0;
+    span:last-of-type {
+      display: none;
+    }
+  }
+
+  .times {
+    max-width: 11rem;
+    margin: auto;
+  }
+}
