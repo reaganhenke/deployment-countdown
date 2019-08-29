@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InlineInputComponent } from './create-countdown/component/inline-input.component';
 import { CreateCountdownModule } from './create-countdown/create-countdown.module';
+import { DateSuffixPipe } from './date-suffix.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CreateCountdownModule } from './create-countdown/create-countdown.modul
     HomeComponent,
     FooterComponent,
     ShareModalComponent,
-    InlineInputComponent
+    InlineInputComponent,
+    DateSuffixPipe
   ],
   imports: [
     ReactiveFormsModule,

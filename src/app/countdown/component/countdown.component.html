@@ -15,16 +15,39 @@
     </div>
 
     <div *ngIf="countdown$ | async">
-      <h1>MY COUNTDOWN</h1>
+      <header>
+        <h1>{{(countdown$ | async).name.toUpperCase()}}'S COUNTDOWN</h1>
+        <p>{{startDate | date:'MMM'}}, {{startDate.getDate().toString() | dateSuffix}} - {{endDate | date:'MMM'}}, {{endDate.getDate().toString() | dateSuffix}}</p>
+      </header>
       <section>
-
-        my countdown:
-        <div *ngIf="countdown$ | async">
-          name: {{(countdown$ | async).name}}
+        <div class="content" *ngIf="countdown$ | async">
+          <div class="times">
+            <div>
+              <h2>Time Passed</h2>
+              <div>days</div>
+              <div>hours</div>
+              <div>minutes</div>
+              <div>seconds</div>
+            </div>
+            <div>
+              <h2>Time Left</h2>
+              <div>days</div>
+              <div>hours</div>
+              <div>minutes</div>
+              <div>seconds</div>
+            </div>
+          </div>
+          <div class="pie-wrapper">
+            <span>{{ (100 - percent) | number: '1.1-2'}}%<br>Left</span>
+            <div class="pie-chart" id="pie">
+              <svg viewBox="-100 -100 200 200">
+                <path d=""/>
+              </svg>
+            </div>
+            <span>{{ percent | number: '1.1-2' }}%<br>Done</span>
+          </div>
+          <!-- https://codepen.io/mcfarlan/pen/XRENOP -->
         </div>
-
-        <button (click)="openModal()">open modal</button>
-
       </section>
     </div>
   </main>
