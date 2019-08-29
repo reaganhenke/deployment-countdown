@@ -22,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InlineInputComponent } from './create-countdown/component/inline-input.component';
 import { CreateCountdownModule } from './create-countdown/create-countdown.module';
 import { DateSuffixPipe } from './date-suffix.pipe';
+import { DaysComponent } from './countdown/component/days/days.component';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { DateSuffixPipe } from './date-suffix.pipe';
     FooterComponent,
     ShareModalComponent,
     InlineInputComponent,
+    DaysComponent,
     DateSuffixPipe
   ],
   imports: [
@@ -49,7 +52,7 @@ import { DateSuffixPipe } from './date-suffix.pipe';
     CreateCountdownModule
   ],
   entryComponents: [ ShareModalComponent ],
-  providers: [ CountdownService ],
+  providers: [ CountdownService, DecimalPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

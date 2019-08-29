@@ -25,13 +25,17 @@ export class CountdownComponent implements OnInit, OnDestroy {
   countdownSubscription: Subscription;
   startDate: Date;
   endDate: Date;
-  percent = 30;
+  now = new Date();
 
   constructor(
     private store: Store<fromCountdown.State>,
     public dialog: MatDialog,
     private location: Location
-    ) { }
+  ) {
+    setInterval(() => {
+      this.now = new Date();
+    }, 1000);
+  }
 
   ngOnInit() {
     this.countdown$ = this.store.pipe(select(fromCountdown.getCountdown));
@@ -75,6 +79,18 @@ export class CountdownComponent implements OnInit, OnDestroy {
     } else {
       setTimeout(this.paintPie, 100, percent);
     }
+  }
+
+  get served() {
+    return this.now.getTime() - this.startDate.getTime();
+  }
+
+  get remaining() {
+    return this.endDate.getTime() - this.now.getTime();
+  }
+
+  get percent() {
+    return (this.served / (this.endDate.getTime() - this.startDate.getTime())) * 100;
   }
 
   ngOnDestroy() {

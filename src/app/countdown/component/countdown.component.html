@@ -22,20 +22,8 @@
       <section>
         <div class="content" *ngIf="countdown$ | async">
           <div class="times">
-            <div>
-              <h2>Time Passed</h2>
-              <div>days</div>
-              <div>hours</div>
-              <div>minutes</div>
-              <div>seconds</div>
-            </div>
-            <div>
-              <h2>Time Left</h2>
-              <div>days</div>
-              <div>hours</div>
-              <div>minutes</div>
-              <div>seconds</div>
-            </div>
+            <app-days title="Time Passed" [time]="served"></app-days>
+            <app-days title="Time Left" [time]="remaining"></app-days>
           </div>
           <div class="pie-wrapper">
             <span>{{ (100 - percent) | number: '1.1-2'}}%<br>Left</span>
@@ -50,6 +38,7 @@
         </div>
       </section>
     </div>
+    
   </main>
   <app-footer></app-footer>
 </div>
