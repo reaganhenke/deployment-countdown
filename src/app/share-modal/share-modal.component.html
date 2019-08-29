@@ -1,1 +1,20 @@
-<p>share-modal works!</p>
+<div *ngIf="!countdown">
+  <div class="loading"></div>
+</div>
+
+<div *ngIf="countdown">
+  <div id="focus-holder" tabindex="0" (blur)="preventFocus()"></div>
+  <header>
+    <button (click)="close()"><img src="assets/close.svg" alt="close"></button>
+  </header>
+
+  <h1>Share {{countdown.name}}'s Countdown</h1>
+  
+  <div id="copy-section">
+    <div class="link">{{url}}</div>
+    <div class="link-sharing">
+      <span [class.show]="copied">copy successful</span>
+      <button ngxClipboard [cbContent]="url" (cbOnSuccess)="copySuccess()">copy</button>
+    </div>
+  </div>  
+</div>

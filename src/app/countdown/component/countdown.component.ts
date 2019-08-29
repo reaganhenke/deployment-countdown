@@ -3,10 +3,8 @@ import { CountdownService } from '../../services/countdown.service';
 import { Store, select } from '@ngrx/store';
 import * as fromCountdown from '../reducers';
 import { LoadCountdown } from '../actions/countdown.actions';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { Countdown } from 'src/app/shared/countdown.model';
-import { MatDialog } from '@angular/material/dialog';
-import { ShareModalComponent } from 'src/app/share-modal/share-modal.component';
 import { map } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
@@ -29,7 +27,6 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromCountdown.State>,
-    public dialog: MatDialog,
     private location: Location
   ) {
     setInterval(() => {
@@ -95,9 +92,5 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.countdownSubscription.unsubscribe();
-  }
-
-  openModal() {
-    this.dialog.open(ShareModalComponent);
   }
 }

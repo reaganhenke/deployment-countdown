@@ -24,6 +24,7 @@ import { CreateCountdownModule } from './create-countdown/create-countdown.modul
 import { DateSuffixPipe } from './date-suffix.pipe';
 import { DaysComponent } from './countdown/component/days/days.component';
 import { DecimalPipe } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DecimalPipe } from '@angular/common';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({}),
     CountdownModule,
-    CreateCountdownModule
+    CreateCountdownModule,
+    ClipboardModule
   ],
   entryComponents: [ ShareModalComponent ],
   providers: [ CountdownService, DecimalPipe ],
