@@ -1,6 +1,6 @@
 # DeploymentCountdown
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
+This project is built with a MEAN (MongoDB, Express, Angular, and Node.js) stack. It allows users to create and share countdowns with a start and end date. 
 
 ## Development server
 
